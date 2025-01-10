@@ -3,9 +3,9 @@ FROM python:latest
 # Set the working directory
 WORKDIR /app
 
-# Copy requirements file and install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy requirements-dev file and install dependencies
+COPY requirements-dev.txt .
+RUN pip install --no-cache-dir -r requirements-dev.txt
 
 # Copy the application code
 COPY ./app ./app
