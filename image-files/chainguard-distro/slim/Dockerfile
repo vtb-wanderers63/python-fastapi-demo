@@ -1,46 +1,46 @@
-FROM cgr.dev/chainguard/node:latest-dev as base
-ENV NODE_ENV=development
+FROM python:latest as base
  
 WORKDIR /dev-app
  
-COPY --chown=node:node package.json .
+COPY requirements.txt .
 
-ADD ./src ./src
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN npm install
+COPY ./app ./app
 
 # lint and test
 # FROM base as lint-and-test
 
-# RUN npm run lint
+# RUN ""
 
-# RUN npm run test
+# RUN ""
 
 # build
 # FROM test as build
-# RUN npm run build
+# RUN ""
 
 # prod package installations
 FROM base as prod-dependency-installations
-ENV NODE_ENV=production
+
 WORKDIR /prod-app
 
-COPY --chown=node:node package.json .
+RUN python -m venv venv
 
-RUN npm install --ignore-scripts
+COPY requirements.txt .
+RUN ./venv/bin/pip install --no-cache-dir -r requirements.txt
 
-FROM cgr.dev/chainguard/node:latest
+FROM python:slim
 WORKDIR /app
 
-# copy dist directory
-# COPY --from=build /dev-app/dist ./
+COPY --from=prod-dependency-installations /prod-app/venv ./venv
 
-COPY --from=prod-dependency-installations /prod-app/node_modules ./node_modules
+ENV PATH="/app/venv/bin:$PATH"
 
-COPY --chown=node:node package.json .
-
-ADD ./src ./src
+# Copy the application code
+COPY ./app ./app
  
-# CMD ["node", "dist/server.js"]
+# Expose the application port
+EXPOSE 8000
 
-ENTRYPOINT ["npm", "run", "start"]
+# Run the FastAPI app
+ENTRYPOINT ["python3", "-m", "uvicorn", "app.main:app", "--host=0.0.0.0", "--port=8000"]
