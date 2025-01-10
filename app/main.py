@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routes.v1 import demov1
+from app.routes.v1 import demov1
 
 app = FastAPI()
 
