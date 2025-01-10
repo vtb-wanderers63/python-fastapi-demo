@@ -1,10 +1,10 @@
-FROM python:latest as base
+FROM cgr.dev/chainguard/python:latest-dev as base
  
 WORKDIR /dev-app
  
-COPY requirements.txt .
+COPY requirements-dev.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements-dev.txt
 
 COPY ./app ./app
 
@@ -29,7 +29,7 @@ RUN python -m venv venv
 COPY requirements.txt .
 RUN ./venv/bin/pip install --no-cache-dir -r requirements.txt
 
-FROM python:slim
+FROM cgr.dev/chainguard/python:latest
 WORKDIR /app
 
 COPY --from=prod-dependency-installations /prod-app/venv ./venv
