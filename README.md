@@ -1,4 +1,5 @@
 # python-fast-api-template
+
 This is a basic fastapi Rest API service template
 
 ## Create python environment:
@@ -19,7 +20,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-##  Githooks
+## Githooks
 
 ```
 python -m python_githooks
@@ -35,4 +36,16 @@ fastapi dev app/main.py
 
 ```
 deactivate
+```
+
+Slim python image:
+
+```
+docker build -t slim-python-test:v1 -f image-files/normal-distro/slim/Dockerfile .
+```
+
+Full python image:
+
+```
+docker build -t full-python-test:v1 -f image-files/normal-distro/full/Dockerfile .
 ```
