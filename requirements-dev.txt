@@ -1,5 +1,0 @@
-fastapi[standard]
-pydantic
-uvicorn
-black
-pre-commit
