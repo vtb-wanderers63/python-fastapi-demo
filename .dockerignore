@@ -1,0 +1,62 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+
+# Logs and other runtime files
+*.log
+*.pot
+*.pyc
+*.pdb
+*.bak
+
+# Testing and coverage
+coverage/
+*.lcov
+.pytest_cache/
+htmlcov/
+
+# IDE/editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker-related
+Dockerfile
+.dockerignore
+
+# Git-related files
+.git/
+.gitignore
+
+# Environment files
+.env
+.env.*
+*.env
+
+# Application specific files
+# (e.g., Django's migrations, etc.)
+migrations/
+staticfiles/
+
+# Other
+*.db
+*.sqlite3
+*.pkl
