@@ -1,0 +1,26 @@
+user:
+  pyappuser:
+    exists: true
+    uid: 1001
+    gid: 1001
+    groups:
+      - pyappgroup
+    shell: /usr/sbin/nologin
+
+group:
+  pyappgroup:
+    exists: true
+    gid: 1001
+
+process:
+  python:
+    running: true
+
+env:
+  PORT: "8000"
+
+dns:
+  localhost:
+    resolvable: true
+    addrs:
+      - 127.0.0.1
