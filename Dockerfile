@@ -7,6 +7,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 ####
 FROM python:slim
 WORKDIR /app
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
 ARG UID=1001
 ARG GID=1001
 RUN addgroup --gid $GID pyappgroup && adduser --uid $UID --ingroup pyappgroup --system pyappuser
