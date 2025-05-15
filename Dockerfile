@@ -13,6 +13,7 @@ RUN addgroup --gid $GID pyappgroup && adduser --uid $UID --ingroup pyappgroup --
 COPY --from=build-time /base/venv ./venv
 ENV PATH='/app/venv/bin:$PATH'
 COPY --chown=pyappuser:pyappgroup app /app
+RUN chown -R pyappuser:pyappgroup /app
 ####
 ENV PORT=8080
 EXPOSE 8080
